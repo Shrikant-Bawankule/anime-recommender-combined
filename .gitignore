@@ -16,8 +16,9 @@ logs/
 # ChromaDB vector store
 chroma_db/
 
-# Data (large files)
-data/*.csv
+# Data — large LLM pipeline files ignored, but anime.csv is tracked
+data/anime_with_synopsis.csv
+data/anime_updated.csv
 
 # IDE
 .vscode/
