@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Env
+.env
+venv/
+.venv/
+
+# Logs
+logs/
+
+# ChromaDB vector store
+chroma_db/
+
+# Data (large files)
+data/*.csv
+
+# IDE
+.vscode/
+.idea/
