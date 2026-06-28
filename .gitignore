@@ -1,25 +1,51 @@
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
-dist/
+*$py.class
+*.so
+.Python
 build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
 
-# Env
-.env
+# Virtual environments
 venv/
+env/
+.env
 .venv/
 
+# Environment files
+.env
+!.env.example
+
 # Logs
-logs/
+logs/*.log
 
-# ChromaDB vector store
-chroma_db/
+# ChromaDB — keep folder structure, ignore actual vector data
+chroma_db/*
+!chroma_db/.gitkeep
 
-# Data — large LLM pipeline files ignored, but anime.csv is tracked
+# Large data files — see data/DATA_SETUP.md for how to get these
 data/anime_with_synopsis.csv
 data/anime_updated.csv
+data/anime.csv
 
-# IDE
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
+htmlcov/
+.coverage

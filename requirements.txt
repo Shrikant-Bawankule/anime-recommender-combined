@@ -1,3 +1,4 @@
+# LLM Recommender (Tab 1) — Groq + ChromaDB + LangChain
 langchain
 langchain-community
 chromadb
@@ -8,8 +9,16 @@ python-dotenv
 sentence-transformers==3.0.1
 langchain_huggingface
 truststore
+certifi
+
+# TF-IDF Recommender (Tab 2) — Scikit-learn
 numpy
 scikit-learn
 scipy
+
+# Gradio UI (anime_gradio_ui.py — optional alternative to Streamlit)
+gradio
+
+# Visualization (optional, used in notebooks)
 matplotlib
 seaborn

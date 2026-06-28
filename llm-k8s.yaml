@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anime-recommender-combined
+  labels:
+    app: anime-recommender-combined
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anime-recommender-combined
+  template:
+    metadata:
+      labels:
+        app: anime-recommender-combined
+    spec:
+      containers:
+      - name: anime-recommender-combined
+        image: anime-recommender-combined:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: anime-recommender-secrets
+              key: GROQ_API_KEY
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: chroma-storage
+          mountPath: /app/chroma_db
+        - name: logs-storage
+          mountPath: /app/logs
+      volumes:
+      - name: chroma-storage
+        emptyDir: {}
+      - name: logs-storage
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anime-recommender-combined-svc
+spec:
+  selector:
+    app: anime-recommender-combined
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8501
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: anime-recommender-secrets
+type: Opaque
+stringData:
+  GROQ_API_KEY: "your-groq-api-key-here"
